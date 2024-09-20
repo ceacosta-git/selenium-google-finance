@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: '0 5 * * *' # Runs at 10 PM PST time every night (5 AM UTC)
   workflow_dispatch:    # Runs manually
+    inputs:
+      tests:
+        description: 'Choose which tests to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - print_differences
 
 permissions:
   contents: write
@@ -28,7 +37,12 @@ jobs:
       run: pipenv install
 
     - name: Run tests using pytest
-      run: pipenv run python -m pytest --verbose --html=reports/report.html --self-contained-html
+      run: |
+        if [ "${{ github.event.inputs.tests }}" == "print_differences" ]; then
+          pipenv run python -m pytest -m print_differences --verbose --html=reports/report.html --self-contained-html;
+        else
+          pipenv run python -m pytest --verbose --html=reports/report.html --self-contained-html;
+        fi
 
     - name: Upload Test Report
       uses: actions/upload-artifact@v3
