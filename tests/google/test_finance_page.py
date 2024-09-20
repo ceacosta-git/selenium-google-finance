@@ -36,4 +36,13 @@ class TestGoogleFinancePage:
         assert expected_stock in finance_page.smart_watchlist_stock_symbols, \
             f"Unable to find stock symbol {expected_stock} in smart watchlist."
 
+    def test_print_stock_symbols_not_in_expected(self):
+        finance_page = GoogleFinancePage(self.driver)
+        finance_page.navigate()
 
+        actual_stocks = set(finance_page.smart_watchlist_stock_symbols)
+        expected_stocks = set(TestGoogleFinancePage.get_expected_stock_symbols())
+        stocks_not_in_expected = None
+        stocks_not_in_expected = actual_stocks.difference(expected_stocks)
+        print(f"Listed stocks not in given test data: {stocks_not_in_expected}")
+        assert stocks_not_in_expected is not None, "Unable to print stocks not in given test data"
