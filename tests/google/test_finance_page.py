@@ -46,3 +46,14 @@ class TestGoogleFinancePage:
         stocks_not_in_expected = actual_stocks.difference(expected_stocks)
         print(f"Listed stocks not in given test data: {stocks_not_in_expected}")
         assert stocks_not_in_expected is not None, "Unable to print stocks not in given test data"
+
+    def test_print_expected_stock_symbols_not_in_smart_watchlist(self):
+        finance_page = GoogleFinancePage(self.driver)
+        finance_page.navigate()
+
+        actual_stocks = set(finance_page.smart_watchlist_stock_symbols)
+        expected_stocks = set(TestGoogleFinancePage.get_expected_stock_symbols())
+        stocks_not_in_watchlist = None
+        stocks_not_in_watchlist = expected_stocks.difference(actual_stocks)
+        print(f"Expected stocks not in smart watchlist: {stocks_not_in_watchlist}")
+        assert stocks_not_in_watchlist is not None, "Unable to print stocks not in smart watchlist"
