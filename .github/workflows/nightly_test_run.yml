@@ -39,9 +39,9 @@ jobs:
     - name: Run tests using pytest
       run: |
         if [ "${{ github.event.inputs.tests }}" == "print_differences" ]; then
-          pipenv run python -m pytest -m print_differences --verbose --html=reports/report.html --self-contained-html;
+          pipenv run python -m pytest -m print_differences --verbose --html=reports/report.html --self-contained-html -s;
         else
-          pipenv run python -m pytest --verbose --html=reports/report.html --self-contained-html;
+          pipenv run python -m pytest --verbose --html=reports/report.html --self-contained-html -s;
         fi
 
     - name: Upload Test Report
