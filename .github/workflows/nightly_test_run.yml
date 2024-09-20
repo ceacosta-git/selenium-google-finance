@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies using Pipfile
       run: pipenv install
 
-    - name: Run tests with coverage
+    - name: Run tests using pytest
       run: pipenv run python -m pytest --verbose --html=reports/report.html --self-contained-html
 
     - name: Upload Test Report
