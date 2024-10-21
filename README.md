@@ -19,11 +19,11 @@ Note: This workflow also runs automatically nightly at 10pm PST
 # How to run locally
 1. Clone this repo: for example
 ```
-git clone https://github.com/ceacosta-git/assessment_test_framework
+git clone https://github.com/ceacosta-git/selenium-google-finance.git
 ```
-2. Navigate to `assessment_test_framework` project on your local environment: for example
+2. Navigate to `selenium-google-finance` project on your local environment: for example
 ```
-cd ~/dev/assessment_test_framework
+cd ~/dev/selenium-google-finance
 ```
 3. Use `pipenv` for setting a local virtual environment
    1. Pre-requisites: 
